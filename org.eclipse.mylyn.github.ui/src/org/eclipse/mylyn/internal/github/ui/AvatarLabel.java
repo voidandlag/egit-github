@@ -29,7 +29,7 @@ import org.eclipse.ui.forms.IFormColors;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 /**
- * Avatar label displaying an image and label for a avatar url.
+ * Avatar label displaying an image and label for a avatar url. test123
  */
 public class AvatarLabel implements IAvatarCallback {
 
@@ -46,7 +46,7 @@ public class AvatarLabel implements IAvatarCallback {
 
 	/**
 	 * Create avatar label
-	 * 
+	 *
 	 * @param store
 	 * @param person
 	 * @param attribute
@@ -60,7 +60,7 @@ public class AvatarLabel implements IAvatarCallback {
 
 	/**
 	 * Set visible
-	 * 
+	 *
 	 * @param visible
 	 * @return this label
 	 */
@@ -72,7 +72,7 @@ public class AvatarLabel implements IAvatarCallback {
 
 	/**
 	 * Layout label
-	 * 
+	 *
 	 * @return this label
 	 */
 	public AvatarLabel layout() {
@@ -83,7 +83,7 @@ public class AvatarLabel implements IAvatarCallback {
 
 	/**
 	 * Get main composite
-	 * 
+	 *
 	 * @return composite
 	 */
 	public Composite getControl() {
@@ -92,7 +92,7 @@ public class AvatarLabel implements IAvatarCallback {
 
 	/**
 	 * Create label
-	 * 
+	 *
 	 * @param parent
 	 * @param toolkit
 	 * @return this label
@@ -134,6 +134,7 @@ public class AvatarLabel implements IAvatarCallback {
 			avatarImage.setBackgroundImage(image);
 			avatarImage.addDisposeListener(new DisposeListener() {
 
+				@Override
 				public void widgetDisposed(DisposeEvent e) {
 					image.dispose();
 				}
@@ -146,9 +147,11 @@ public class AvatarLabel implements IAvatarCallback {
 	 * @see org.eclipse.mylyn.internal.github.ui.AvatarStore.IAvatarCallback#loaded(org.eclipse.swt.graphics.ImageData,
 	 *      org.eclipse.mylyn.internal.github.ui.AvatarStore)
 	 */
+	@Override
 	public void loaded(final ImageData data, final AvatarStore store) {
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				Image image = store.getScaledImage(AVATAR_SIZE, data);
 				setImage(image).setVisible(true).layout();
